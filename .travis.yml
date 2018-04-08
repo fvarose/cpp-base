@@ -7,7 +7,7 @@ matrix:
       compiler: clang
     - os: linux
       dist: trusty
-      compiler: g++-6
+      compiler: gcc
 
 install:
   - |    
