@@ -14,7 +14,11 @@ install:
     fi
 
 before_script:
+  - pwd
+  - ls 
   - cd ${TRAVIS_BUILD_DIR}
+  - pwd
+  - ls
   - cmake ..
 
 script:
