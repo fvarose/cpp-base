@@ -16,6 +16,8 @@ install:
     fi
 
 before_script:
+  - g++ --version
+  - gcc --version
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
   - cmake ..
