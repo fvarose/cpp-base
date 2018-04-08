@@ -18,7 +18,5 @@ before_script:
   - cmake ..
 
 script:
-  - pwd
-  - ls
   - cmake --build .
   - ctest
