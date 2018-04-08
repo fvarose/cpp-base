@@ -14,13 +14,12 @@ install:
     fi
 
 before_script:
-  - pwd
-  - ls 
   - cd ${TRAVIS_BUILD_DIR}
-  - pwd
-  - ls
+  - mkdir build && cd build
   - cmake ..
 
 script:
+  - pwd
+  - ls
   - cmake --build .
   - ctest
