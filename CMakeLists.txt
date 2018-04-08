@@ -5,7 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_subdirectory(src)
+add_subdirectory(app)
+add_subdirectory(lib)
 
 enable_testing()
+add_subdirectory(external/Catch2)
 add_subdirectory(test)
