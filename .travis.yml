@@ -1,0 +1,30 @@
+language: cpp
+
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode9.1
+      compiler: clang
+      env: COMPILER=clang++;
+    - os: linux
+      dist: trusty
+      compiler: gcc
+      env: COMPILER=g++-6;
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+
+install:
+  - export CXX=${COMPILER};
+  - ${CXX} --version
+
+before_script:
+  - cd ${TRAVIS_BUILD_DIR}
+  - mkdir build && cd build
+
+script:
+  - cmake .. && cmake --build .
+  - ctest
