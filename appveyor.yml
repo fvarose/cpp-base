@@ -5,9 +5,12 @@ install:
 build_script:
 - cmd: >-
     mkdir build && cd build
+
     cmake .. && cmake --build .
 test_script:
 - cmd: >-
     dir
+
     cd build
+    
     ctest
