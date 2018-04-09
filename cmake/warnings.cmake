@@ -3,7 +3,7 @@ function(treat_warnings_as_errors target)
         target_compile_options( ${target} PRIVATE -Werror)
     endif()
     if ( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
-        target_compile_options( ${target} PRIVATE /Werror)
+        target_compile_options( ${target} PRIVATE /WX)
     endif()
 endfunction()
 
