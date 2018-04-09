@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/fvarose/cpp-base.svg?branch=master)](https://travis-ci.org/fvarose/cpp-base)
+[![Build status](https://ci.appveyor.com/api/projects/status/vl7sfpx2s8bw38ab/branch/master?svg=true)](https://ci.appveyor.com/project/fvarose/cpp-base/branch/master)
 
 # cpp-base
 Base repo setup for a C++ project.

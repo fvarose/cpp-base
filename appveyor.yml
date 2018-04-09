@@ -1,0 +1,15 @@
+version: '{branch}__build#{build}'
+image: Visual Studio 2017
+install:
+- cmd: git submodule update --init
+build_script:
+- cmd: >-
+    mkdir build && cd build
+
+    cmake ..
+
+    cmake --build . --config Debug
+
+    cmake --build . --config Release
+test_script:
+- cmd: ctest -C Release
