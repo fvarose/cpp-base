@@ -6,6 +6,10 @@ build_script:
 - cmd: >-
     mkdir build && cd build
 
-    cmake .. && cmake --build . --config Debug,Release
+    cmake ..
+
+    cmake --build . --config Debug
+
+    cmake --build . --config Release
 test_script:
 - cmd: ctest -C Release
