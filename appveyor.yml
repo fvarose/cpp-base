@@ -1,0 +1,16 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+build_script:
+- cmd: >-
+    dir
+
+    mkdir build && cd build
+
+    cmake .. && cmake --build .
+test_script:
+- cmd: >-
+    dir
+
+    cd build
+
+    ctest
