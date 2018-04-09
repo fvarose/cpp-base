@@ -8,15 +8,21 @@ Base repo setup for a C++ project.
 - C++17 enabled
 - All warnings turned on and treated as errors
 - [Catch2](https://github.com/catchorg/Catch2/) for unit tests
-- Builds on Travis for the following configs:
-  - OSX / apple-clang-9.0.0
-  - Ubuntu (Trusty) / g++-6
+- CI integration for the following configs:
+  - Travis CI
+    - OSX / apple-clang-9.0.0
+    - Ubuntu (Trusty) / g++-6
+  - AppVeyor
+    - Windows / Visual Studio 15 2017
 
-## Building
+## Building locally
 
     cd cpp-base
     mkdir build && cd build
+    # OSX / Linux
     cmake .. && cmake --build .
+    # Windows
+    cmake .. && cmake --build . --config Release
 
 ## Run tests
 
