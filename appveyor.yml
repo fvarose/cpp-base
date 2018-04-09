@@ -9,4 +9,4 @@ build_script:
     cmake .. && cmake --build .
 test_script:
 - cmd: >-
-    ctest
+    ctest -C Release
