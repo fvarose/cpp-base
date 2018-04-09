@@ -9,8 +9,4 @@ build_script:
     cmake .. && cmake --build .
 test_script:
 - cmd: >-
-    dir
-
-    cd build
-    
     ctest
