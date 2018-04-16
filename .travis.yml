@@ -34,6 +34,7 @@ jobs:
     - stage: format
       osx: linux
       dist: trusty
+      install: echo "nop install
       script: docker build -t support/clang-format -f ./support/clang-format/Dockerfile .
 
 # before_install:
