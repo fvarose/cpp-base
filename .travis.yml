@@ -34,8 +34,10 @@ jobs:
     - stage: format
       osx: linux
       dist: trusty
-      install: echo "nop install
+      install: skip
       script: docker build -t support/clang-format -f ./support/clang-format/Dockerfile .
+      deploy: skip
+
 
 # before_install:
 #   - cd ${TRAVIS_BUILD_DIR}
