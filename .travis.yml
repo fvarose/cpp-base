@@ -3,13 +3,25 @@ language: cpp
 services:
   - docker
 
-matrix:
+# jobs:
+#   - include:
+#     - stage: build
+#       script
+
+stages:
+  - format
+  - compile
+
+# matrix:
+jobs:
   include:
-    - os: osx
+    - stage: compile
+      os: osx
       osx_image: xcode9.1
       compiler: clang
       env: COMPILER=clang++;
-    - os: linux
+    - stage: compile
+      os: linux
       dist: trusty
       compiler: gcc
       env: COMPILER=g++-6;
@@ -19,11 +31,15 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-6
+    - stage: format
+      osx: linux
+      dist: trusty
+      script: docker build -t support/clang-format -f ./support/clang-format/Dockerfile .
 
-before_install:
-  - cd ${TRAVIS_BUILD_DIR}
-  - docker build -t support/clang-format -f ./support/clang-format/Dockerfile .
-  - docker run support/clang-format
+# before_install:
+#   - cd ${TRAVIS_BUILD_DIR}
+#   - docker build -t support/clang-format -f ./support/clang-format/Dockerfile .
+#   - docker run support/clang-format
 
 install:
   - export CXX=${COMPILER};
