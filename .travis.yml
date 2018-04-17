@@ -36,7 +36,9 @@ jobs:
       dist: trusty
       install: skip
       before_script: skip
-      script: docker build -t support/clang-format -f ./support/clang-format/Dockerfile .
+      script:
+        - docker build -t support/clang-format -f ./support/clang-format/Dockerfile .
+        - docker run support/clang-format
 
 
 # before_install:
