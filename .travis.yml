@@ -35,6 +35,7 @@ jobs:
       osx: linux
       dist: trusty
       install: skip
+      before_script: skip
       script: docker build -t support/clang-format -f ./support/clang-format/Dockerfile .
 
 
