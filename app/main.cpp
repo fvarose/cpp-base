@@ -2,7 +2,7 @@
 
 #include <dummy.hpp>
 
-int main() {
+int main()         {
   std::cout << "app::main()\n";
 
   dummy d{"name"};
