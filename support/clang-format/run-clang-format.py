@@ -1,5 +1,6 @@
 import argparse
 import os
+import subprocess
 import sys
 
 def _parse_args():
@@ -13,16 +14,27 @@ def _parse_args():
 def _find_cpp_files(ignored_paths):
     print('Info: ignoring the following paths:', ignored_paths)
     cpp_files = []
-    for dirpath, dnames, fnames in os.walk('./'):
-        if len([p for p in ignored_paths if '/{}/'.format(p) in dirpath]) > 0:
+    for path, dirs, files in os.walk('./'):
+        if len([p for p in ignored_paths if '/{}'.format(p) in path]) > 0:
             continue
-        for f in fnames:
-            if f.endswith(".cpp"):
-                cpp_files.append(os.path.join(dirpath, f))
+        for file in files:
+            if file.endswith(".cpp"):
+                cpp_files.append(os.path.join(path, file))
+    print('Info: found {} C++ files to check'.format(len(cpp_files)))
     return cpp_files
 
-def _is_clang_formatted(file):
-    return False
+def _is_clang_formatted(filepath):
+    clang_format_args = ['clang-format', '-output-replacements-xml', '-style=file', filepath]
+    try:
+        xml_output = subprocess.check_output(clang_format_args)
+    except:
+        print('Error: could not run the following command: `{}`'.format(' '.join(clang_format_args)))
+        exit(2)
+        
+    for line in xml_output.splitlines():
+        if line.startswith(b'<replacement '):
+            return False
+    return True
 
 def main():
     args = _parse_args()
