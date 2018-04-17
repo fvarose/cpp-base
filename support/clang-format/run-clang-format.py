@@ -1,4 +1,5 @@
 import argparse
+import logging
 import os
 import subprocess
 import sys
@@ -12,7 +13,7 @@ def _parse_args():
     return parser.parse_args()
 
 def _find_cpp_files(ignored_paths):
-    print('Info: ignoring the following paths:', ignored_paths)
+    logging.info('Ignoring the following paths: %s', ignored_paths)
     cpp_files = []
     for path, dirs, files in os.walk('./'):
         if len([p for p in ignored_paths if '/{}'.format(p) in path]) > 0:
@@ -20,7 +21,7 @@ def _find_cpp_files(ignored_paths):
         for file in files:
             if file.endswith(".cpp"):
                 cpp_files.append(os.path.join(path, file))
-    print('Info: found {} C++ files to check'.format(len(cpp_files)))
+    logging.info('Found %i C++ files to check', len(cpp_files))
     return cpp_files
 
 def _is_clang_formatted(filepath):
@@ -28,7 +29,7 @@ def _is_clang_formatted(filepath):
     try:
         xml_output = subprocess.check_output(clang_format_args)
     except:
-        print('Error: could not run the following command: `{}`'.format(' '.join(clang_format_args)))
+        logging.error('Could not run the following command: `%s`', ' '.join(clang_format_args))
         exit(2)
         
     for line in xml_output.splitlines():
@@ -44,9 +45,10 @@ def main():
     bad_files = [f for f in cpp_files if not _is_clang_formatted(f)]
 
     if len(bad_files) > 0:
-        print('Error: found some files that are not formatted with clang-format:', bad_files)
+        logging.error('Found some files that are not formatted with clang-format: %s', bad_files)
         exit(1)
     exit(0)
 
 if __name__ == "__main__":
+    logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO, stream=sys.stdout)
     main()
