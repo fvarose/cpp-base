@@ -4,4 +4,4 @@ RUN mkdir repo
 ADD . /repo
 WORKDIR repo
 
-CMD ["python", "support/clang-format/run-clang-format.py"]
+CMD ["python", "support/clang-format/check-clang-format.py"]
