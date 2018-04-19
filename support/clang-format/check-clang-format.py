@@ -19,7 +19,7 @@ def _find_cpp_files(ignored_paths):
         if len([p for p in ignored_paths if '/{}'.format(p) in path]) > 0:
             continue
         for file in files:
-            if file.endswith(".cpp"):
+            if file.endswith('.cpp') or file.endswith('hpp') or file.endswith('.h'):
                 cpp_files.append(os.path.join(path, file))
     logging.info('Found %i C++ files to check', len(cpp_files))
     return cpp_files
@@ -45,7 +45,9 @@ def main():
     bad_files = [f for f in cpp_files if not _is_clang_formatted(f)]
 
     if len(bad_files) > 0:
-        logging.error('Found some files that are not formatted with clang-format: %s', bad_files)
+        logging.error('Found %i files that are not formatted with clang-format:', len(bad_files))
+        for file in bad_files:
+            logging.error('- %s', file)
         exit(1)
     exit(0)
 
