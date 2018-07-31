@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- coding: utf-8-*-
 import argparse
 import logging
 import os
@@ -31,7 +33,6 @@ def _is_clang_formatted(filepath):
     except:
         logging.error('Could not run the following command: `%s`', ' '.join(clang_format_args))
         exit(2)
-        
     for line in xml_output.splitlines():
         if line.startswith(b'<replacement '):
             return False
@@ -39,6 +40,8 @@ def _is_clang_formatted(filepath):
 
 def main():
     args = _parse_args()
+
+    logging.info('Using clang-format version:\n%s', subprocess.check_output(['clang-format', '--version']))
 
     cpp_files = _find_cpp_files(args.ignore)
 
@@ -49,6 +52,7 @@ def main():
         for file in bad_files:
             logging.error('- %s', file)
         exit(1)
+    logging.info('Success: all %i files are correctly formatted 😌', len(cpp_files))
     exit(0)
 
 if __name__ == "__main__":
