@@ -14,6 +14,9 @@ Base repo setup for a C++ project.
     - Ubuntu (Trusty) / g++-6
   - AppVeyor
     - Windows / Visual Studio 15 2017
+- Code formatting checked automatically with `clang-format-7`:
+  - locally: trigerred as a separate test (requires Docker)
+  - CI: "format" stage defined in Travis CI
 
 ## Building locally
 
