@@ -6,7 +6,7 @@ build_script:
 - cmd: >-
     mkdir build && cd build
 
-    cmake ..
+    cmake .. -DCHECK_CLANG_FORMAT=OFF
 
     cmake --build . --config Debug
 

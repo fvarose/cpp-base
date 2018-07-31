@@ -12,4 +12,5 @@ add_subdirectory(lib)
 
 enable_testing()
 add_subdirectory(external/Catch2)
+add_subdirectory(support/clang-format)
 add_subdirectory(test)
