@@ -40,7 +40,7 @@ jobs:
         - cd ${TRAVIS_BUILD_DIR}
         - pwd
         - ls
-        - sh ./check_clang_format.sh
+        - sh ./check-clang-format.sh
 
 
 # before_install:
