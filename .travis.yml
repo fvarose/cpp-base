@@ -4,8 +4,8 @@ services:
   - docker
 
 stages:
-  - format
   - compile
+  - format
 
 jobs:
   include:
