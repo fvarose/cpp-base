@@ -43,5 +43,6 @@ before_script:
   - mkdir build && cd build
 
 script:
-  - cmake .. && cmake --build .
+  - cmake -DCHECK_CLANG_FORMAT=OFF ..
+  - cmake --build .
   - ctest
