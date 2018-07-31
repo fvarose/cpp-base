@@ -37,6 +37,7 @@ jobs:
       install: skip
       before_script: skip
       script:
+        - cd ${TRAVIS_BUILD_DIR}
         - sh ./check_clang_format.sh
 
 
