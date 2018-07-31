@@ -37,8 +37,7 @@ jobs:
       install: skip
       before_script: skip
       script:
-        - docker build -t support/clang-format -f ./support/clang-format/Dockerfile .
-        - docker run support/clang-format
+        - sh ./check_clang_format.sh
 
 
 # before_install:
